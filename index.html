@@ -1,54 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Indian Grocery Store Blog</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Indian Grocery Store</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="app">
-        <header>
-            <h1>Indian Grocery Store Blog</h1>
-            <nav>
-                <ul>
-                    <li><a href="#" data-section="home">Home</a></li>
-                    <li><a href="#" data-section="about">About</a></li>
-                    <li><a href="#" data-section="blog">Blog</a></li>
-                    <li><a href="#" data-section="contact">Contact</a></li>
-                </ul>
-            </nav>
-        </header>
-        <main>
-            <section id="home" class="active">
-                <h2>Welcome to Our Indian Grocery Store!</h2>
-                <p>Find the freshest spices, authentic ingredients, and traditional products right here in Sunnyvale, California.</p>
-            </section>
-            <section id="about">
-                <h2>About Us</h2>
-                <p>We are a family-run business dedicated to bringing you the best Indian products at competitive prices.</p>
-            </section>
-            <section id="blog">
-                <h2>Blog</h2>
-                <div id="blog-list"></div>
-            </section>
-            <section id="contact">
-                <h2>Contact Us</h2>
-                <form id="contact-form">
-                    <label for="name">Name:</label>
-                    <input type="text" id="name" required>
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" required>
-                    <label for="message">Message:</label>
-                    <textarea id="message" rows="4" required></textarea>
-                    <button type="submit">Send</button>
-                </form>
-            </section>
-        </main>
-        <footer>
-            <p>&copy; 2024 Indian Grocery Store. All rights reserved.</p>
-        </footer>
+  <header>
+    <div class="logo">Indian Grocery</div>
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="home" class="hero">
+    <h1>Welcome to Your Local Indian Grocery Store</h1>
+    <p>Fresh, authentic, and affordable Indian groceries just for you!</p>
+    <button onclick="exploreProducts()">Explore Products</button>
+  </section>
+
+  <section id="products" class="product-section">
+    <h2>Our Products</h2>
+    <div class="product-list">
+      <div class="product-card">
+        <img src="rice.jpg" alt="Basmati Rice">
+        <h3>Basmati Rice</h3>
+        <p>Premium quality basmati rice.</p>
+      </div>
+      <div class="product-card">
+        <img src="spices.jpg" alt="Indian Spices">
+        <h3>Indian Spices</h3>
+        <p>Authentic spices for your kitchen.</p>
+      </div>
+      <div class="product-card">
+        <img src="snacks.jpg" alt="Indian Snacks">
+        <h3>Snacks</h3>
+        <p>Taste the flavors of India.</p>
+      </div>
     </div>
-    <script src="script.js"></script>
+  </section>
+
+  <section id="about" class="about-section">
+    <h2>About Us</h2>
+    <p>We are a family-run grocery store offering fresh and authentic Indian groceries in Sunnyvale, California. Our mission is to bring the taste of India closer to you.</p>
+  </section>
+
+  <section id="contact" class="contact-section">
+    <h2>Contact Us</h2>
+    <p>Email: info@indiangrocerystore.com</p>
+    <p>Phone: +1 (123) 456-7890</p>
+    <p>Address: 123 Indian Grocery Lane, Sunnyvale, CA</p>
+  </section>
+
+  <footer>
+    <p>&copy; 2024 Indian Grocery Store. All rights reserved.</p>
+  </footer>
+
+  <script src="scripts.js"></script>
 </body>
 </html>
