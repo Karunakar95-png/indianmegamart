@@ -1,3 +1,3 @@
-function exploreProducts() {
-  document.getElementById("products").scrollIntoView({ behavior: "smooth" });
+function scrollToSection(sectionId) {
+    document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
 }
