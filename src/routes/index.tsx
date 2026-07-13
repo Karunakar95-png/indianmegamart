@@ -1,11 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
-import logo from "@/assets/logo.png.asset.json";
+import logo from "@/assets/logo.png";
 import hero from "@/assets/hero.jpg";
 import spices from "@/assets/spices.jpg";
 import lentils from "@/assets/lentils.jpg";
 import snacks from "@/assets/snacks.jpg";
 import produce from "@/assets/produce.jpg";
-import { MapPin, Phone, Mail, Clock, CreditCard, ShoppingBag, Instagram, Facebook, Star } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, CreditCard, Instagram, Facebook, Star } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -20,10 +20,10 @@ export const Route = createFileRoute("/")({
 });
 
 const categories = [
-  { name: "Spices", desc: "Aromatic spices for your kitchen.", img: spices },
-  { name: "Lentils & Pulses", desc: "Premium quality lentils and pulses.", img: lentils },
-  { name: "Snacks", desc: "Delicious Indian snacks to relish.", img: snacks },
-  { name: "Fresh Produce", desc: "Fresh fruits and vegetables daily.", img: produce },
+  { name: "Spices", desc: "Aromatic spices for your kitchen.", img: spices, link: "/spices" },
+  { name: "Lentils & Pulses", desc: "Premium quality lentils and pulses.", img: lentils, link: "/lentils" },
+  { name: "Snacks", desc: "Delicious Indian snacks to relish.", img: snacks, link: "/snacks" },
+  { name: "Fresh Produce", desc: "Fresh fruits and vegetables daily.", img: produce, link: "/fresh-produce" },
 ];
 
 const moreCategories = [
@@ -44,7 +44,7 @@ function Index() {
       <header className="sticky top-0 z-50 bg-background/95 backdrop-blur border-b border-border">
         <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
           <a href="#top" className="flex items-center min-w-0">
-            <img src={logo.url} alt="Indian Mega Mart" className="h-10 md:h-12 w-auto object-contain" />
+            <img src={logo} alt="Indian Mega Mart" className="h-10 md:h-12 w-auto object-contain" />
           </a>
           <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
             <a href="#about" className="hover:text-primary transition">About</a>
@@ -73,13 +73,13 @@ function Index() {
             Fresh produce, authentic spices, traditional snacks, and everything you need for a true Indian meal.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <a href="#visit" className="bg-primary text-primary-foreground px-6 py-3 rounded-md font-semibold hover:opacity-90 transition inline-flex items-center gap-2">
-              <MapPin size={18} /> Visit the Store
-            </a>
-            <a href="https://www.doordash.com" target="_blank" rel="noreferrer" className="bg-background/10 backdrop-blur border border-background/30 text-background px-6 py-3 rounded-md font-semibold hover:bg-background/20 transition inline-flex items-center gap-2">
-              <ShoppingBag size={18} /> Order Online
-            </a>
-          </div>
+  <a href="#visit" className="bg-primary text-primary-foreground px-6 py-3 rounded-md font-semibold hover:opacity-90 transition inline-flex items-center gap-2">
+    <MapPin size={18} /> Visit the Store
+  </a>
+  <a href="https://www.doordash.com/en-GB/convenience/store/34339601" target="_blank" rel="noreferrer" className="bg-background/10 backdrop-blur border border-background/30 text-background px-6 py-3 rounded-md font-semibold hover:bg-background/20 transition inline-flex items-center gap-2">
+    🛒 Order Online
+  </a>
+</div>
           <div className="mt-10 flex flex-wrap gap-x-6 gap-y-2 text-background/90 text-sm">
             <span className="inline-flex items-center gap-2"><CreditCard size={16} className="text-accent" /> Accepts SNAP / EBT</span>
             <span className="inline-flex items-center gap-2"><CreditCard size={16} className="text-accent" /> Credit Cards Accepted</span>
@@ -111,18 +111,17 @@ function Index() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {categories.map((c) => (
-              <div key={c.name} className="group bg-card rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all hover:-translate-y-1">
-                <div className="aspect-square overflow-hidden">
-                  <img src={c.img} alt={c.name} loading="lazy" width={800} height={800} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                </div>
-                <div className="p-5">
-                  <h3 className="font-bold text-lg">{c.name}</h3>
-                  <p className="text-sm text-muted-foreground mt-1">{c.desc}</p>
-                </div>
-              </div>
-            ))}
+  <div key={c.name} className="group bg-card rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all hover:-translate-y-1">
+    <div className="aspect-square overflow-hidden">
+      <img src={c.img} alt={c.name} loading="lazy" width={800} height={800} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+    </div>
+    <div className="p-5">
+      <h3 className="font-bold text-lg">{c.name}</h3>
+      <p className="text-sm text-muted-foreground mt-1">{c.desc}</p>
+    </div>
+  </div>
+))}
           </div>
-
           <div className="mt-10">
             <h3 className="text-center text-xl font-semibold mb-6">And much more in store</h3>
             <div className="flex flex-wrap justify-center gap-2">
@@ -190,17 +189,6 @@ function Index() {
                   <p className="text-muted-foreground">Open daily · Closes 9 PM</p>
                 </div>
               </div>
-              <div className="flex gap-4">
-                <ShoppingBag className="text-primary shrink-0 mt-1" />
-                <div>
-                  <p className="font-semibold">Order Online</p>
-                  <div className="flex flex-wrap gap-3 mt-1">
-                    <a href="https://www.doordash.com" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-primary underline">DoorDash</a>
-                    <a href="https://www.ubereats.com" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-primary underline">Uber Eats</a>
-                    <a href="https://postmates.com" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-primary underline">Postmates</a>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
           <div className="rounded-xl overflow-hidden shadow-sm min-h-[400px]">
@@ -219,7 +207,7 @@ function Index() {
       <footer className="bg-foreground text-background py-12 px-4">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-6 justify-between items-center">
           <div className="flex items-center gap-3">
-            <img src={logo.url} alt="Indian Mega Mart" className="h-10 bg-background rounded-md p-1" />
+            <img src={logo} alt="Indian Mega Mart" className="h-10 bg-background rounded-md p-1" />
           </div>
           <div className="flex items-center gap-4">
             <a href="https://instagram.com" target="_blank" rel="noreferrer" aria-label="Instagram" className="hover:text-accent transition"><Instagram /></a>

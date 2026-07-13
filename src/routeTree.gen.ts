@@ -9,8 +9,32 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SpicesRouteImport } from './routes/spices'
+import { Route as SnacksRouteImport } from './routes/snacks'
+import { Route as LentilsRouteImport } from './routes/lentils'
+import { Route as FreshProduceRouteImport } from './routes/fresh-produce'
 import { Route as IndexRouteImport } from './routes/index'
 
+const SpicesRoute = SpicesRouteImport.update({
+  id: '/spices',
+  path: '/spices',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SnacksRoute = SnacksRouteImport.update({
+  id: '/snacks',
+  path: '/snacks',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LentilsRoute = LentilsRouteImport.update({
+  id: '/lentils',
+  path: '/lentils',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FreshProduceRoute = FreshProduceRouteImport.update({
+  id: '/fresh-produce',
+  path: '/fresh-produce',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +43,72 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/fresh-produce': typeof FreshProduceRoute
+  '/lentils': typeof LentilsRoute
+  '/snacks': typeof SnacksRoute
+  '/spices': typeof SpicesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/fresh-produce': typeof FreshProduceRoute
+  '/lentils': typeof LentilsRoute
+  '/snacks': typeof SnacksRoute
+  '/spices': typeof SpicesRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/fresh-produce': typeof FreshProduceRoute
+  '/lentils': typeof LentilsRoute
+  '/snacks': typeof SnacksRoute
+  '/spices': typeof SpicesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/fresh-produce' | '/lentils' | '/snacks' | '/spices'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/fresh-produce' | '/lentils' | '/snacks' | '/spices'
+  id: '__root__' | '/' | '/fresh-produce' | '/lentils' | '/snacks' | '/spices'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  FreshProduceRoute: typeof FreshProduceRoute
+  LentilsRoute: typeof LentilsRoute
+  SnacksRoute: typeof SnacksRoute
+  SpicesRoute: typeof SpicesRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/spices': {
+      id: '/spices'
+      path: '/spices'
+      fullPath: '/spices'
+      preLoaderRoute: typeof SpicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/snacks': {
+      id: '/snacks'
+      path: '/snacks'
+      fullPath: '/snacks'
+      preLoaderRoute: typeof SnacksRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lentils': {
+      id: '/lentils'
+      path: '/lentils'
+      fullPath: '/lentils'
+      preLoaderRoute: typeof LentilsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/fresh-produce': {
+      id: '/fresh-produce'
+      path: '/fresh-produce'
+      fullPath: '/fresh-produce'
+      preLoaderRoute: typeof FreshProduceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,7 +121,21 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  FreshProduceRoute: FreshProduceRoute,
+  LentilsRoute: LentilsRoute,
+  SnacksRoute: SnacksRoute,
+  SpicesRoute: SpicesRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
